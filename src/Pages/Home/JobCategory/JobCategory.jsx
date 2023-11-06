@@ -28,7 +28,7 @@ const JobCategory = () => {
               .filter((job) => job.category === "web development")
               .slice(0, 4)
               .map((job) => (
-                <div key={job.id} className="bg-white rounded shadow-lg p-6">
+                <div key={job._id} className="bg-white rounded shadow-lg p-6">
                   <h2 className="text-xl font-bold mb-2">{job.title}</h2>
                   <p className="text-gray-600 mb-2">{job.deadline}</p>
                   <p className="text-gray-700 mb-2">{`Price Range: $${job.minPrice} - $${job.maxPrice}`}</p>
@@ -47,7 +47,7 @@ const JobCategory = () => {
               .filter((job) => job.category === "digital marketing")
               .slice(0, 4)
               .map((job) => (
-                <div key={job.id} className="bg-white rounded shadow-lg p-6">
+                <div key={job._id} className="bg-white rounded shadow-lg p-6">
                   <h2 className="text-xl font-bold mb-2">{job.title}</h2>
                   <p className="text-gray-600 mb-2">{job.deadline}</p>
                   <p className="text-gray-700 mb-2">{`Price Range: $${job.minPrice} - $${job.maxPrice}`}</p>
@@ -66,7 +66,7 @@ const JobCategory = () => {
               .filter((job) => job.category === "graphics design")
               .slice(0, 4)
               .map((job) => (
-                <div key={job.id} className="bg-white rounded shadow-lg p-6">
+                <div key={job._id} className="bg-white rounded shadow-lg p-6">
                   <h2 className="text-xl font-bold mb-2">{job.title}</h2>
                   <p className="text-gray-600 mb-2">{job.deadline}</p>
                   <p className="text-gray-700 mb-2">{`Price Range: $${job.minPrice} - $${job.maxPrice}`}</p>
