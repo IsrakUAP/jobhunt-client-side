@@ -6,6 +6,7 @@ import Registration from "../Pages/Registration/Registration";
 import AddJob from "../Pages/AddJob/AddJob";
 import PrivateRoute from "./PrivateRoute";
 import JobDetails from "../Pages/JobDetails/JobDetails";
+import MyBids from "../Pages/MyBids/MyBids";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
           path: "/jobDetails/:id",
           element: <JobDetails></JobDetails>,
           loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+        },
+        {
+          path:"/myBids",
+          element:<MyBids></MyBids>
         }
         
       ]

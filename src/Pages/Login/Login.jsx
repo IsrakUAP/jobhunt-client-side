@@ -2,13 +2,32 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/AuthProvider";
 import swal from "sweetalert";
+import app from "../../firebase/firebase.config";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+const auth = getAuth(app);
 
 
 const Login = () => {
-    const {signIn,googleSign} = useContext(AuthContext);
+    const {signIn} = useContext(AuthContext);
     const [loginError, setLoginError] = useState("");
+    const provider = new GoogleAuthProvider();
+    const [loading,setLoading]= useState(true);
     const location = useLocation();
     const navigate = useNavigate();
+
+    const handGoogleLogin = () => {
+        setLoading(true);
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            swal("Good job!", "successful login By Google", "success");
+            navigate(location?.state? location.state : '/')
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      };
 const handleLogin = e =>{
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -38,18 +57,6 @@ const handleLogin = e =>{
         
     });
 }
-const googleHandle=()=>{
-    googleSign()
-    .then((result) => {
-        const user = result.user;
-        console.log(user);
-        swal("Good job!", "successful login By Google", "success");
-        navigate(location?.state? location.state : '/')
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-}
     return (
         <div className="flex items-center justify-center bg-gradient-to-b py-3 from-white to-gray-100">
             <div className="bg-white p-12 rounded-lg shadow-lg">
@@ -72,7 +79,7 @@ const googleHandle=()=>{
                         </button>
                     </div>
                     <div className="form-control mt-6">
-            <button onClick={googleHandle} className="btn  bg-purple-500"><img className="h-[30px]" src="https://i.ibb.co/zSC5sQX/7611770-1.png" alt="" /> Google login</button>
+            <button onClick={handGoogleLogin} className="btn  bg-purple-500"><img className="h-[30px]" src="https://i.ibb.co/zSC5sQX/7611770-1.png" alt="" /> Google login</button>
         </div>
                 </form>
                 <p className="text-center lg:text-center">Create new accout  <Link className=" text-xl font-semibold text-teal-500" to='/registration'>Register</Link> </p>
