@@ -25,7 +25,8 @@ const JobDetails = () => {
         const deadline = form.deadline.value;
         const email = form.email.value;
         const ownerEmail = form.ownerEmail.value;
-        const newBid = { title, price, deadline, email, ownerEmail }
+        const status = "pending";
+        const newBid = { title, price, deadline, email, ownerEmail,status }
         console.log(newBid);
         fetch('http://localhost:5000/bidList', {
             method: 'POST',
