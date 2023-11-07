@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyPostedJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -14,6 +16,37 @@ const MyPostedJobs = () => {
         setJobs(userJob);
       });
   }, [user.email]);
+
+
+  const handleDelete = _id =>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) { 
+        fetch(`http://localhost:5000/category/${_id}`,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.deletedCount > 0){
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your post has been deleted.",
+                    icon: "success"
+                  });
+                  window.location.href = "/myPostedJobs";
+            }
+        })
+        }
+      });
+  }
 
   return (
     <div className="container mx-auto mt-8">
@@ -31,13 +64,16 @@ const MyPostedJobs = () => {
                 ${job.minPrice} - ${job.maxPrice}
               </p>
               <div className="flex space-x-4">
+                <Link to={`/updateJob/${job._id}`}>
                 <button
                   className="text-blue-500 hover:text-blue-700 focus:outline-none"
                 >
                   Update
                 </button>
+                </Link>
                 <button
                   className="text-red-500 hover:text-red-700 focus:outline-none"
+                  onClick={()=> handleDelete(job._id)}
                 >
                   Delete
                 </button>
