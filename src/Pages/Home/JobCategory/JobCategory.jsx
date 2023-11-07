@@ -27,7 +27,6 @@ const JobCategory = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
             {jobs
               .filter((job) => job.category === "web development")
-              .slice(0, 4)
               .map((job) => (
                 <div key={job._id} className="bg-white rounded shadow-lg p-6">
                   <h2 className="text-xl font-bold mb-2">{job.title}</h2>
@@ -46,7 +45,6 @@ const JobCategory = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
             {jobs
               .filter((job) => job.category === "digital marketing")
-              .slice(0, 4)
               .map((job) => (
                 <div key={job._id} className="bg-white rounded shadow-lg p-6">
                   <h2 className="text-xl font-bold mb-2">{job.title}</h2>
@@ -65,7 +63,6 @@ const JobCategory = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
             {jobs
               .filter((job) => job.category === "graphics design")
-              .slice(0, 4)
               .map((job) => (
                 <div key={job._id} className="bg-white rounded shadow-lg p-6">
                   <h2 className="text-xl font-bold mb-2">{job.title}</h2>

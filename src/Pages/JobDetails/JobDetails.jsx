@@ -6,7 +6,7 @@ import swal from "sweetalert";
 
 const JobDetails = () => {
     const job = useLoaderData();
-    const { minPrice, maxPrice, deadline, title, shortDescription } = job;
+    const { minPrice, maxPrice, deadline, title, shortDescription,email } = job;
     const { user } = useContext(AuthContext);
 
     const [bidAmount, setBidAmount] = useState(minPrice);
@@ -72,10 +72,10 @@ const JobDetails = () => {
                 </div>
                 <div className="mb-4">
                     <label className="block font-bold text-gray-700 mb-1">The job owner Email:</label>
-                    <input type="email" name="ownerEmail" className="form-input mt-1 block w-full" value={job.buyerEmail} readOnly />
+                    <input type="email" name="ownerEmail" className="form-input mt-1 block w-full" value={email} readOnly />
                 </div>
                 <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded disabled:opacity-50 w-full"
-                    disabled={user.email === job.buyerEmail}>
+                    disabled={user.email === email}>
                     Bid on the project
                 </button>
             </form>

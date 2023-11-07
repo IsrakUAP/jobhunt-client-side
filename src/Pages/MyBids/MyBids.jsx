@@ -17,8 +17,7 @@ const MyBids = () => {
     }, [user.email]);
 
     const handleCompleteBid = (bidId) => {
-        
-        
+      
     };
 
     return (
