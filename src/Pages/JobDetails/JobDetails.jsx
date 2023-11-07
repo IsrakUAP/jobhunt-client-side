@@ -6,7 +6,7 @@ import swal from "sweetalert";
 
 const JobDetails = () => {
     const job = useLoaderData();
-    const { minPrice, maxPrice, deadline, title, shortDescription,email } = job;
+    const { minPrice, maxPrice, deadline, title, shortDescription, email } = job;
     const { user } = useContext(AuthContext);
 
     const [bidAmount, setBidAmount] = useState(minPrice);
@@ -25,22 +25,28 @@ const JobDetails = () => {
         const deadline = form.deadline.value;
         const email = form.email.value;
         const ownerEmail = form.ownerEmail.value;
-        const newBid = {title,price,deadline,email,ownerEmail}
+        const newBid = { title, price, deadline, email, ownerEmail }
         console.log(newBid);
-        fetch('http://localhost:5000/bidList',{
-            method:'POST',
+        fetch('http://localhost:5000/bidList', {
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(newBid)
         })
-        .then(res => res.json())
-        .then (data => {
-            console.log(data);
-            if(data.insertedId){
-                swal("Good job!", "successful added your bid on this project", "success");
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    swal("Good job!", "successful added your bid on this project", "success")
+                        .then(() => {
+                            window.location.href = "/myBids";
+                        });
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
 
     }
 

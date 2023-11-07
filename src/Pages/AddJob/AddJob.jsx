@@ -34,21 +34,26 @@ const AddJob = () => {
         const newJob = { email, title, deadline, shortDescription, category, minPrice, maxPrice };
         console.log(newJob);
 
-        fetch('http://localhost:5000/category',{
-            method:'POST',
+        fetch('http://localhost:5000/category', {
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(newJob)
         })
-        .then(res => res.json())
-        .then (data => {
-            console.log(data);
-            if(data.insertedId){
-                swal("Good job!", "successful added Job", "success");
-            }
-        })
-        
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    swal("Good job!", "Job successfully added", "success")
+                        .then(() => {
+                            window.location.href = "/myPostedJobs";
+                        });
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
         setJobData({
             email: "",
             title: "",
@@ -101,8 +106,8 @@ const AddJob = () => {
                     <textarea
                         className="form-textarea w-full rounded border py-2 px-3"
                         rows="4"
-                        name="description"
-                        value={jobData.description}
+                        name="shortDescription"
+                        value={jobData.shortDescription}
                         onChange={handleInputChange}
                         required
                     ></textarea>
