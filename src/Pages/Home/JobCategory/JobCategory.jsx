@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -33,9 +34,9 @@ const JobCategory = () => {
                   <p className="text-gray-600 mb-2">{job.deadline}</p>
                   <p className="text-gray-700 mb-2">{`Price Range: $${job.minPrice} - $${job.maxPrice}`}</p>
                   <p className="text-gray-700 mb-2">{job.shortDescription}</p>
-                  <button className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
+                  <Link to={`/jobDetails/${job._id}`}><button className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
                     Bid Now
-                  </button>
+                  </button></Link>
                 </div>
               ))}
           </div>
@@ -52,9 +53,9 @@ const JobCategory = () => {
                   <p className="text-gray-600 mb-2">{job.deadline}</p>
                   <p className="text-gray-700 mb-2">{`Price Range: $${job.minPrice} - $${job.maxPrice}`}</p>
                   <p className="text-gray-700 mb-2">{job.shortDescription}</p>
-                  <button className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
+                  <Link to={`/jobDetails/${job._id}`}><button className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
                     Bid Now
-                  </button>
+                  </button></Link>
                 </div>
               ))}
           </div>
@@ -71,9 +72,9 @@ const JobCategory = () => {
                   <p className="text-gray-600 mb-2">{job.deadline}</p>
                   <p className="text-gray-700 mb-2">{`Price Range: $${job.minPrice} - $${job.maxPrice}`}</p>
                   <p className="text-gray-700 mb-2">{job.shortDescription}</p>
-                  <button className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
+                  <Link to={`/jobDetails/${job._id}`}><button className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
                     Bid Now
-                  </button>
+                  </button></Link>
                 </div>
               ))}
           </div>
