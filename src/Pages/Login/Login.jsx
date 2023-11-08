@@ -4,36 +4,45 @@ import { AuthContext } from "../../components/AuthProvider";
 import swal from "sweetalert";
 import app from "../../firebase/firebase.config";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import axios from "axios";
 const auth = getAuth(app);
 
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState("");
     const provider = new GoogleAuthProvider();
-    const [loading,setLoading]= useState(true);
+    const [loading, setLoading] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
 
     const handGoogleLogin = () => {
         setLoading(true);
         signInWithPopup(auth, provider)
-          .then((result) => {
-            const user = result.user;
-            console.log(user);
-            swal("Good job!", "successful login By Google", "success");
-            navigate(location?.state? location.state : '/')
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
-      };
-const handleLogin = e =>{
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const email = form.get('email');
-    const password = form.get('password');
-    const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            .then((result) => {
+                console.log(result.user);
+                const user = {};
+
+                swal("Good job!", "successful login By Google", "success");
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state? location.state : '/')
+                        }
+                    })
+
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const email = form.get('email');
+        const password = form.get('password');
+        const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         if (!emailCheck.test(email)) {
             setLoginError("Invalid email format");
@@ -44,19 +53,29 @@ const handleLogin = e =>{
             return;
         }
         setLoginError("");
-    signIn(email,password)
-    .then(result=>{
-        console.log(result.user);
-        swal("Good job!", "successful login", "success");
-        navigate(location?.state? location.state : '/')
-       })
-       .catch(error => {
-        console.log(error);
-        
-            setLoginError("The email or password you entered is incorrect.");
-        
-    });
-}
+        signIn(email, password)
+            .then(result => {
+                console.log(result.user);
+
+                const user = { email };
+                swal("Good job!", "successful login", "success");
+
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state? location.state : '/')
+                        }
+                    })
+
+            })
+            .catch(error => {
+                console.log(error);
+
+                setLoginError("The email or password you entered is incorrect.");
+
+            });
+    }
     return (
         <div className="flex items-center justify-center bg-gradient-to-b py-3 from-white to-gray-100">
             <div className="bg-white p-12 rounded-lg shadow-lg">
@@ -79,8 +98,8 @@ const handleLogin = e =>{
                         </button>
                     </div>
                     <div className="form-control mt-6">
-            <button onClick={handGoogleLogin} className="btn  bg-purple-500"><img className="h-[30px]" src="https://i.ibb.co/zSC5sQX/7611770-1.png" alt="" /> Google login</button>
-        </div>
+                        <button onClick={handGoogleLogin} className="btn  bg-purple-500"><img className="h-[30px]" src="https://i.ibb.co/zSC5sQX/7611770-1.png" alt="" /> Google login</button>
+                    </div>
                 </form>
                 <p className="text-center lg:text-center">Create new accout  <Link className=" text-xl font-semibold text-teal-500" to='/registration'>Register</Link> </p>
             </div>
