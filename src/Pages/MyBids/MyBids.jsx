@@ -8,7 +8,7 @@ const MyBids = () => {
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/bidList') 
+        fetch('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/bidList') 
             .then(res => res.json())
             .then(data => {
                 setBids(data);

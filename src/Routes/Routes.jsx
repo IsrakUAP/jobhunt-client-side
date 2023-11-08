@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         {
           path: "/jobDetails/:id",
           element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+          loader: ({params})=> fetch(`https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category/${params.id}`)
         },
         {
           path: "/myBids",
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         {
           path: "/updateJob/:id",
           element: <PrivateRoute><UpdateJob></UpdateJob></PrivateRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+          loader: ({params})=> fetch(`https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category/${params.id}`)
         }
         
       ]

@@ -7,7 +7,7 @@ import "react-tabs/style/react-tabs.css";
 const JobCategory = () => {
     const [jobs, setJobs] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/category')
+        fetch('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category')
         .then(res => res.json())
         .then(data => setJobs(data));
     },[])

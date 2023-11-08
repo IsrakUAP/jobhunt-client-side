@@ -24,7 +24,7 @@ const Login = () => {
                 const user = {};
 
                 swal("Good job!", "successful login By Google", "success");
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                         if (res.data.success) {
@@ -60,7 +60,7 @@ const Login = () => {
                 const user = { email };
                 swal("Good job!", "successful login", "success");
 
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                         if (res.data.success) {

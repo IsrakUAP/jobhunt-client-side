@@ -34,7 +34,7 @@ const AddJob = () => {
         const newJob = { email, title, deadline, shortDescription, category, minPrice, maxPrice };
         console.log(newJob);
 
-        fetch('http://localhost:5000/category', {
+        fetch('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

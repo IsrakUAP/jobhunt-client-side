@@ -28,7 +28,7 @@ const JobDetails = () => {
         const status = "pending";
         const newBid = { title, price, deadline, email, ownerEmail,status }
         console.log(newBid);
-        fetch('http://localhost:5000/bidList', {
+        fetch('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/bidList', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

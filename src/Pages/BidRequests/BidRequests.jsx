@@ -7,14 +7,14 @@ const BidRequests = () => {
   const [bidRequests, setBidRequests] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/bidList")
+    fetch("https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/bidList")
       .then((response) => response.json())
       .then((data) => setBidRequests(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const handleAcceptBid = (bidId) => {
-    fetch(`http://localhost:5000/bidList/${bidId}`, {
+    fetch(`https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/bidList/${bidId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const BidRequests = () => {
   };
 
   const handleRejectBid = (bidId) => {
-    fetch(`http://localhost:5000/bidList/${bidId}`, {
+    fetch(`https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/bidList/${bidId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
