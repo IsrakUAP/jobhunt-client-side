@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../components/AuthProvider";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 
 const JobDetails = () => {
@@ -53,7 +54,9 @@ const JobDetails = () => {
 
     return (
         <div className="flex flex-col items-center">
-
+            <Helmet>
+                <title>JobHunt | JobDetails</title>
+            </Helmet>
             <p className="text-gray-700 mb-4 text-center">{shortDescription}</p>
             <form onSubmit={handleBid} className="bg-white border rounded-lg p-8 shadow-lg w-80">
                 <div className="mb-4">

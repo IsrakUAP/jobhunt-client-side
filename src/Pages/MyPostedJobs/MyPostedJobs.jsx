@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MyPostedJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -50,6 +51,9 @@ const MyPostedJobs = () => {
 
   return (
     <div className="container mx-auto mt-8">
+      <Helmet>
+        <title>JobHunt | MyPostedJobs</title>
+      </Helmet>
       <h2 className="text-3xl font-bold mb-6">My Posted Jobs</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {jobs.map((job) => (

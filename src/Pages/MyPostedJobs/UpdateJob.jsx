@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../components/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const UpdateJob = () => {   
     const job = useLoaderData();
@@ -53,6 +54,9 @@ const UpdateJob = () => {
 
     return (
         <div className="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg max-w-md">
+            <Helmet>
+                <title>JobHunt | UpdateJob</title>
+            </Helmet>
             <h2 className="text-3xl font-bold mb-6 text-center">Update Job</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-4">

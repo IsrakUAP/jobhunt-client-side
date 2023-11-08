@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const MyBids = () => {
     const [bids, setBids] = useState([]);
@@ -57,6 +58,9 @@ const MyBids = () => {
 
     return (
         <div className="container mx-auto mt-8">
+            <Helmet>
+                <title>JobHunt | MyBids</title>
+            </Helmet>
         <h2 className="text-3xl font-bold mb-4 text-center">My Bids</h2>
         <button
             className="bg-blue-500 text-white py-2 px-4 rounded mb-4 w-full md:w-auto"

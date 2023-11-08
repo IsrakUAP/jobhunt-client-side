@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 const AddJob = () => {
     const [jobData, setJobData] = useState({
@@ -67,6 +68,9 @@ const AddJob = () => {
 
     return (
         <div className="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg max-w-md">
+            <Helmet>
+                <title>JobHunt | AddJobs</title>
+            </Helmet>
             <h2 className="text-3xl font-bold mb-6 text-center">Add Job</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">

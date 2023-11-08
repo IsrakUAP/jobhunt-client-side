@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const BidRequests = () => {
   const [bidRequests, setBidRequests] = useState([]);
@@ -49,6 +50,9 @@ const BidRequests = () => {
 
   return (
     <div className="container mx-auto mt-8">
+      <Helmet>
+        <title>JobHunt | BidRequests</title>
+      </Helmet>
     <h2 className="text-3xl font-bold mb-4 text-center">Bid Requests</h2>
     <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
