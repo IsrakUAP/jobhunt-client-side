@@ -8,7 +8,7 @@ const MyPostedJobs = () => {
   const {user} = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category")
+    fetch("https://b8a11-server-side.vercel.app/category")
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -29,7 +29,7 @@ const MyPostedJobs = () => {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) { 
-        fetch(`https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category/${_id}`,{
+        fetch(`https://b8a11-server-side.vercel.app/category/${_id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

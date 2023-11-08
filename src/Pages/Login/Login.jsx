@@ -24,7 +24,7 @@ const Login = () => {
                 const user = {};
 
                 swal("Good job!", "successful login By Google", "success");
-                axios.post('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/jwt', user, { withCredentials: true })
+                axios.post('https://b8a11-server-side.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                         if (res.data.success) {
@@ -60,7 +60,7 @@ const Login = () => {
                 const user = { email };
                 swal("Good job!", "successful login", "success");
 
-                axios.post('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/jwt', user, { withCredentials: true })
+                axios.post('https://b8a11-server-side.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                         if (res.data.success) {
@@ -91,6 +91,9 @@ const Login = () => {
                         <input type="password" placeholder="Enter your password" name="password"
                             className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-purple-300" required />
                     </div>
+                    {loginError && (
+                            <p className="text-red-500 mt-2">{loginError}</p>
+                        )}
                     <div className="text-center">
                         <button type="submit"
                             className="w-full bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:ring focus:ring-purple-300">

@@ -35,7 +35,7 @@ const UpdateJob = () => {
 
         const jobData = { email, title, deadline, shortDescription, category, minPrice, maxPrice };
         console.log(jobData);
-        fetch(`https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/category/${_id}`, {
+        fetch(`https://b8a11-server-side.vercel.app/category/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

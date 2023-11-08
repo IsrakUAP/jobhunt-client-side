@@ -5,10 +5,11 @@ import { AuthContext } from "../../components/AuthProvider";
 const MyBids = () => {
     const [bids, setBids] = useState([]);
     const [completedBids, setCompletedBids] = useState([]);
+    const [sortAscending, setSortAscending] = useState(true);
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('https://b8a11-server-side-p4bxe5dpv-israk-ullah-khans-projects.vercel.app/bidList') 
+        fetch('https://b8a11-server-side.vercel.app/bidList') 
             .then(res => res.json())
             .then(data => {
                 setBids(data);
@@ -23,9 +24,28 @@ const MyBids = () => {
     };
 
 
+    const handleSortByStatus = () => {
+        const sortedBids = [...bids].sort((a, b) => {
+            if (sortAscending) {
+                return a.status.localeCompare(b.status);
+            } else {
+                return b.status.localeCompare(a.status);
+            }
+        });
+        setBids(sortedBids);
+        setSortAscending(!sortAscending);
+    };
+
+
     return (
         <div className="container mx-auto mt-8">
             <h2 className="text-3xl font-bold mb-4 text-center">My Bids</h2>
+            <button
+                className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
+                onClick={handleSortByStatus}
+            >
+                Sort by Status
+            </button>
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                     <tr>
