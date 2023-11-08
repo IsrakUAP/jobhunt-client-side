@@ -19,8 +19,26 @@ const MyBids = () => {
     }, [user.email]);
 
     const handleCompleteBid = (bidId) => {
-      console.log(bidId);
-      setCompletedBids(prevCompletedBids => [...prevCompletedBids, bidId]);
+      
+
+        fetch(`https://b8a11-server-side.vercel.app/bidList/${bidId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: 'complete' }),
+        })
+            .then(res => res.json())
+            .then(updatedBid => {
+                const updatedBids = bids.map(bid => (bid._id === bidId ? updatedBid : bid));
+                setBids(updatedBids);
+                window.location.href = "/myBids";
+            })
+            .catch(error => {
+                console.error('Error updating bid status:', error);
+            });
+
+        setCompletedBids(prevCompletedBids => [...prevCompletedBids, bidId]);
     };
 
 
@@ -39,32 +57,33 @@ const MyBids = () => {
 
     return (
         <div className="container mx-auto mt-8">
-            <h2 className="text-3xl font-bold mb-4 text-center">My Bids</h2>
-            <button
-                className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
-                onClick={handleSortByStatus}
-            >
-                Sort by Status
-            </button>
+        <h2 className="text-3xl font-bold mb-4 text-center">My Bids</h2>
+        <button
+            className="bg-blue-500 text-white py-2 px-4 rounded mb-4 w-full md:w-auto"
+            onClick={handleSortByStatus}
+        >
+            Sort by Status
+        </button>
+        <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                     <tr>
                         <th className="border p-2">Job title</th>
-                        <th className="border p-2">Email</th>
-                        <th className="border p-2">Deadline</th>
+                        <th className="border p-2 hidden md:table-cell">Email</th>
+                        <th className="border p-2 hidden md:table-cell">Deadline</th>
                         <th className="border p-2">Status</th>
-                        <th className="border p-2">Complete</th>
+                        <th className="border p-2 text-center">Complete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {bids.map((bid) => (
                         <tr key={bid._id}>
                             <td className="border p-2">{bid.title}</td>
-                            <td className="border p-2">{bid.email}</td>
-                            <td className="border p-2">{bid.deadline}</td>
+                            <td className="border p-2 hidden md:table-cell">{bid.email}</td>
+                            <td className="border p-2 hidden md:table-cell">{bid.deadline}</td>
                             <td className="border p-2 text-center">{bid.status}</td>
                             <td className="border p-2 text-center">
-                            {bid.status === "in progress" && !completedBids.includes(bid._id) && (
+                                {bid.status === "in progress" && !completedBids.includes(bid._id) && (
                                     <button
                                         className="bg-green-500 text-white py-1 px-4 rounded"
                                         onClick={() => handleCompleteBid(bid._id)}
@@ -78,6 +97,7 @@ const MyBids = () => {
                 </tbody>
             </table>
         </div>
+    </div>
     );
 };
 
