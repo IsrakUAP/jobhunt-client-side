@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../components/AuthProvider";
 import { getAuth } from "firebase/auth";
+import { motion } from "framer-motion"
 
 
 const Navbar = () => {
@@ -24,7 +25,12 @@ const Navbar = () => {
 
     }
     return (
-        <div>
+        <motion.div
+        initial ={{y: -250}}
+        animate={{y: -10} }
+        transition={{delay: 0.2, type:'spring', stiffness:120 }}
+        
+        >
         <nav className="p-4 flex flex-wrap items-center justify-between">
             <div className="nav-start flex items-center space-x-2 mb-2 w-full md:w-auto">
                 <NavLink to="/" className="text-black font-bold text-lg flex items-center space-x-2" activeClassName="font-extrabold">
@@ -65,7 +71,7 @@ const Navbar = () => {
                 )}
             </div>
         </nav>
-    </div>
+    </motion.div>
     );
 };
 

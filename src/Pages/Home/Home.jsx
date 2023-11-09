@@ -3,11 +3,15 @@ import AboutUs from "./AboutUs/AboutUs";
 import Banner from "./Banner/Banner";
 import FeaturedJobsComponent from "./FeaturedJobsComponent/FeaturedJobsComponent";
 import JobCategory from "./JobCategory/JobCategory";
-
+import { motion } from "framer-motion"
 
 const Home = () => {
     return (
-        <div>
+        <motion.div
+        initial = {{opacity: 0}}
+        animate = {{opacity: 1}}
+        transition={{delay: 0.6}}
+        >
             <Helmet>
                 <title>JobHunt | Home</title>
             </Helmet>
@@ -16,7 +20,7 @@ const Home = () => {
             <FeaturedJobsComponent></FeaturedJobsComponent>
             <AboutUs></AboutUs>
 
-        </div>
+        </motion.div>
     );
 };
 

@@ -13,7 +13,7 @@ const JobCategory = () => {
     setTimeout(()=>{
       setLoading(false)
 
-    },700)
+    },1700)
   },[])
 
 

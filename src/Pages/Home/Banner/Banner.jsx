@@ -1,8 +1,13 @@
-
+import { motion } from "framer-motion"
 
 const Banner = () => {
     return (
-        <div
+        <motion.div
+        initial={{x: '-100vw'}}
+        animate={{x: 0}}
+        transition={{delay: 0.8, type:'spring', stiffness:120}}
+
+
     className="relative h-[100%] w-auto text-black flex justify-center items-center"
     style={{
         backgroundImage: "url('https://static.wixstatic.com/media/fdc839_256581ce11b541b39691e7981edb1f7b~mv2.jpg/v1/fill/w_640,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/fdc839_256581ce11b541b39691e7981edb1f7b~mv2.jpg')",
@@ -33,7 +38,7 @@ const Banner = () => {
             </button>
         </div>
     </div>
-</div>
+</motion.div>
 
     );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion"
 
 const FeaturedJobsComponent = () => {
     const featuredJobs = [
@@ -19,7 +20,12 @@ const FeaturedJobsComponent = () => {
     };
 
     return (
-        <div className="featured-jobs-container bg-white p-6 rounded-lg shadow-md my-4 relative text-center">
+        <motion.div
+        initial={{x: '100vw'}}
+        animate={{x: 0}}
+        transition={{delay: 0.8, type:'spring', stiffness:120}}
+
+        className="featured-jobs-container bg-white p-6 rounded-lg shadow-md my-4 relative text-center">
             <h3 className="text-2xl font-bold mb-4">Featured Jobs</h3>
             {featuredJobs.map((job, index) => (
                 <div
@@ -44,7 +50,7 @@ const FeaturedJobsComponent = () => {
                     </button>
                 ))}
             </div>
-        </div>
+        </motion.div>
     );
 };
 
