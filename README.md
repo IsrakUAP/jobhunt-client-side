@@ -1,4 +1,4 @@
-Client-side live link: https://jobhunt-b8881.web.app/
+Client-side live link: https://jobhunt-75a10.web.app/
 
 
 About my project:
